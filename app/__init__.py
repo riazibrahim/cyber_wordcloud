@@ -3,6 +3,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 from config import Config
+import sys
+import signal
+
 
 parser = argparse.ArgumentParser(allow_abbrev=False, description="A tool to create word clouds from a bunch of URLs")
 url_or_list = parser.add_mutually_exclusive_group(required=True)
@@ -44,3 +47,12 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 logger.debug('Cyber Cloud app has started')
+
+
+# Signal handler To exit on Ctrl+C
+def signal_handler(sig, frame):
+    print('\n\nYou pressed Ctrl+C! .. exiting..')
+    sys.exit('Bye!')
+
+
+signal.signal(signal.SIGINT, signal_handler)
