@@ -6,4 +6,5 @@ from wordcloud import STOPWORDS
 filename_prepend = datetime.now().strftime("%Y%m%d-%H%M%S")
 url = args.url
 urls_file = args.file
+op_filename = args.output
 stop_words = set(STOPWORDS)

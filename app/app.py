@@ -29,6 +29,8 @@ logger.debug('The urls are \n{}'.format(url_response_dict.keys()))
 
 comment_words = ''
 
+logger.debug("Extracting words from the html responses ...")
+
 for key in url_response_dict:
     val = BeautifulSoup(url_response_dict[key], "lxml").text
     tokens = val.split()
@@ -36,6 +38,7 @@ for key in url_response_dict:
         tokens[i] = tokens[i].lower()
     comment_words += " ".join(tokens)
 
+logger.info("Generating the word cloud...")
 word_cloud = WordCloud(width=800, height=800,
                       background_color='white',
                       stopwords=stop_words,
@@ -46,5 +49,5 @@ plt.imshow(word_cloud)
 plt.axis('off')
 plt.tight_layout(pad=0)
 
-# plt.show()
-plt.savefig('outputs/figure.png')
+logger.info("Saving the word cloud image to outputs folder...")
+plt.savefig('outputs/{}.png'.format(op_filename))

@@ -18,6 +18,12 @@ url_or_list.add_argument('-f', '--file',
                     type=str,
                     help='Give URLs in a file')
 
+parser.add_argument('-o', '--output',
+                    dest='output',
+                    type=str,
+                    help='Give output file name',
+                    required=True)
+
 args = parser.parse_args()
 
 # Configure Logging
