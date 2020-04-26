@@ -5,8 +5,9 @@ import os
 from config import Config
 import sys
 import signal
+from wordcloud import STOPWORDS
 
-
+# Setup arguments
 parser = argparse.ArgumentParser(allow_abbrev=False, description="A tool to create word clouds from a bunch of URLs")
 url_or_list = parser.add_mutually_exclusive_group(required=True)
 url_or_list.add_argument('-u', '--url',
@@ -53,6 +54,24 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 logger.debug('Cyber Cloud app has started')
+
+
+# Obtain stopwords
+filename = 'stopwords.lst'
+stopwords_from_file = []
+try:
+    with open(filename) as f:
+        stopwords_from_file = f.read().splitlines()
+        logger.info('Stop words loaded from file {}\n'.format(stopwords_from_file))
+except Exception as e:
+    logger.info('stopwords.lst could not be loaded {}. Continuing with default'.format(e))
+
+if stopwords_from_file is not None:
+    stopwords = set(STOPWORDS)
+    for item in stopwords_from_file:
+        stopwords.add(item)
+else:
+    stopwords = STOPWORDS
 
 
 # Signal handler To exit on Ctrl+C

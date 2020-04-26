@@ -137,7 +137,6 @@ dmypy.json
 logs/
 *.db
 *.bkp*
-*.lst
 *.lst.*
 outputs/
 backups/
