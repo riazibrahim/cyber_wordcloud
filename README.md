@@ -1,8 +1,8 @@
 # Cyber cloud: Word cloud generator
 
-usage: cyber_cloud.py [-h] (-u URL | -f FILE) -o OUTPUT
-
 A tool for generating word cloud from a list of input URLs or single URL in command.
+
+usage: cyber_cloud.py [-h] (-u URL | -f FILE) -o OUTPUT
 
 optional arguments:
   -h, --help                    show this help message and exit
