@@ -1,17 +1,14 @@
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-import pandas as pd
-from app import logger
 from app.globalvars import *
 from multiprocessing.pool import ThreadPool
 from config import Config
 from app.utils import *
-import hashlib
 import sys
+import re
+from bs4 import BeautifulSoup
 
-df = pd.read_csv('/home/soze/coding/24-cyber_cloud/Youtube04-Eminem.csv')
-comment_words = ''
-
+# df = pd.read_csv('/home/soze/coding/24-cyber_cloud/Youtube04-Eminem.csv')
 url_response_dict = {}
 url_list = create_url_list()
 threads_count = int(len(url_list) / 2) if int(
@@ -30,22 +27,22 @@ for url, html, error, ip in results:
 logger.debug('Number of dictionary items {}'.format(len(url_response_dict)))
 logger.debug('The urls are \n{}'.format(url_response_dict.keys()))
 
-sys.exit('Bye!')
+comment_words = ''
 
-for val in df.CONTENT:
-    val = str(val)
+for key in url_response_dict:
+    val = BeautifulSoup(url_response_dict[key], "lxml").text
     tokens = val.split()
     for i in range(len(tokens)):
         tokens[i] = tokens[i].lower()
     comment_words += " ".join(tokens)
 
-wordcloud = WordCloud(width=800, height=800,
+word_cloud = WordCloud(width=800, height=800,
                       background_color='white',
                       stopwords=stop_words,
                       min_font_size=10).generate(comment_words)
 
 plt.figure(figsize=(8, 8), facecolor=None)
-plt.imshow(wordcloud)
+plt.imshow(word_cloud)
 plt.axis('off')
 plt.tight_layout(pad=0)
 
