@@ -5,11 +5,16 @@ import os
 from config import Config
 
 parser = argparse.ArgumentParser(allow_abbrev=False, description="A tool to create word clouds from a bunch of URLs")
-parser.add_argument('-u', '--url',
+url_or_list = parser.add_mutually_exclusive_group(required=True)
+url_or_list.add_argument('-u', '--url',
                     dest='url',
                     type=str,
-                    help='Give URL to obtain word cloud',
-                    required=True)
+                    help='Give URL to obtain word cloud')
+url_or_list.add_argument('-f', '--file',
+                    dest='file',
+                    type=str,
+                    help='Give URLs in a file')
+
 args = parser.parse_args()
 
 # Configure Logging
@@ -32,7 +37,6 @@ console_handler.setLevel(Config.CONSOLE_LOGGING_LEVEL)
 # create formatter and add it to the handlers
 file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
 console_formatter = logging.Formatter('%(levelname)s: %(message)s')
-# console_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
 file_handler.setFormatter(file_formatter)
 console_handler.setFormatter(console_formatter)
 # add the handlers to the logger
@@ -40,4 +44,3 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 logger.debug('Cyber Cloud app has started')
-logger.info('Cyber Cloud app has started')
