@@ -3,7 +3,8 @@ import requests
 import random
 from config import Config
 from threading import current_thread
-from app.globalvars import urls_file
+from app.globalvars import urls_file, url
+import sys
 
 
 def fetch_url(url):
@@ -26,7 +27,7 @@ def fetch_url(url):
 def create_url_list():
     url_list = []
     if urls_file is not None:
-        logger.debug('Input file detected')
+        logger.info('Input file detected')
         with open(urls_file, 'r') as file:
             logger.debug('Opened input file {}'.format(urls_file))
             i = 1
@@ -34,5 +35,11 @@ def create_url_list():
                 site = item.rstrip()
                 url_list.append(site)
                 i += 1
+    elif url is not None:
+        logger.info('Input URL detected')
+        url_list.append(url)
+    else:
+        logger.info('No inputs detected!')
+        sys.exit('Exiting!!\n Bye')
     logger.info("Number of urls to be processed: {}".format(len(url_list)))
     return url_list

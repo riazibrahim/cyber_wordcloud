@@ -12,9 +12,13 @@ from collections import Counter
 
 url_response_dict = {}
 url_list = create_url_list()
-threads_count = int(len(url_list) / 2) if int(
-    len(url_list) / 2) < Config.MAX_THREAD_COUNT else Config.MAX_THREAD_COUNT
-chunk_size = int(len(url_list) / threads_count)
+threads_count = 1
+chunk_size = 1
+
+if len(url_list) > 1:
+    threads_count = int(len(url_list) / 2) if int(
+        len(url_list) / 2) < Config.MAX_THREAD_COUNT else Config.MAX_THREAD_COUNT
+    chunk_size = int(len(url_list) / threads_count)
 
 #TODO: Use tor for parallel execution
 results = ThreadPool(Config.THREADS_COUNT).imap(fetch_url, url_list, chunksize=chunk_size)
