@@ -8,7 +8,7 @@ import signal
 from wordcloud import STOPWORDS
 
 # Setup arguments
-parser = argparse.ArgumentParser(allow_abbrev=False, description="A tool to create word clouds from a bunch of URLs")
+parser = argparse.ArgumentParser(allow_abbrev=False, description="A tool for generating word cloud from a list of input URLs or single URL in command.")
 url_or_list = parser.add_mutually_exclusive_group(required=True)
 url_or_list.add_argument('-u', '--url',
                          dest='url',

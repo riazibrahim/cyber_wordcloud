@@ -1,6 +1,15 @@
 # Cyber cloud: Word cloud generator
 
+usage: cyber_cloud.py [-h] (-u URL | -f FILE) -o OUTPUT
+
 A tool for generating word cloud from a list of input URLs or single URL in command.
+
+optional arguments:
+  -h, --help                    show this help message and exit
+  -u URL, --url URL             Give URL to obtain word cloud
+  -f FILE, --file FILE          Give URLs in a file
+  -o OUTPUT, --output OUTPUT    Give output file name
+
 
 Feel free to hit me up with suggestions.
 
@@ -50,6 +59,12 @@ python cyber_cloud.py -u 'https://www.us-cert.gov/ncas/alerts/aa20-107a' -o cybe
 ```
 python cyber_cloud.py -f url_list.lst -o cyberwordcloud 
 ```
+
+##### Usage 2: To get help:
+```
+python cyber_cloud.py -h
+```
+
 
 ## Built With
 
