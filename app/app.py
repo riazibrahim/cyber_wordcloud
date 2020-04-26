@@ -47,4 +47,4 @@ plt.axis('off')
 plt.tight_layout(pad=0)
 
 # plt.show()
-plt.savefig('/home/soze/coding/24-cyber_cloud/outputs/figure.png')
+plt.savefig('outputs/figure.png')
