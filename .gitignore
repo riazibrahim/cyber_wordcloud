@@ -144,3 +144,4 @@ backups/
 *.sh
 .vscode/
 .idea/
+*.csv
