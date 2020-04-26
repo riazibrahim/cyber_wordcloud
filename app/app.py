@@ -8,7 +8,7 @@ import sys
 import re
 from bs4 import BeautifulSoup
 
-# df = pd.read_csv('/home/soze/coding/24-cyber_cloud/Youtube04-Eminem.csv')
+logger.debug("{} stop words used are: {}".format(len(stop_words), stop_words))
 url_response_dict = {}
 url_list = create_url_list()
 threads_count = int(len(url_list) / 2) if int(
@@ -29,7 +29,7 @@ logger.debug('The urls are \n{}'.format(url_response_dict.keys()))
 
 comment_words = ''
 
-logger.debug("Extracting words from the html responses ...")
+logger.info("Extracting words from the html responses ...")
 
 for key in url_response_dict:
     val = BeautifulSoup(url_response_dict[key], "lxml").text

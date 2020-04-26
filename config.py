@@ -10,6 +10,10 @@ class Config:
     THREADS_COUNT = 1
     MAX_THREAD_COUNT = 1
 
+    #Stopwords
+    ADDITIONAL_STOPWORDS = ['will', 'security', 'access', 'source', 'now', 'application', 'technical', 'document',
+                            'attack', 'comment', 'used', 'think', 'list', 'start', 'editor', 'displayed']
+
 
 
 
