@@ -1,4 +1,4 @@
-# Cyber word cloud: Word cloud generator
+# Cyber word cloud
 
 A tool for generating word cloud from a list of input URLs or single URL in command.
 
