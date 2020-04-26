@@ -1,6 +1,7 @@
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import pandas as pd
+from app.globalvars import url
 
 
 df = pd.read_csv('/home/soze/coding/24-cyber_cloud/Youtube04-Eminem.csv')
