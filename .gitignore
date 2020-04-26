@@ -144,3 +144,4 @@ backups/
 .vscode/
 .idea/
 *.csv
+*.ods

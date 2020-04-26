@@ -62,9 +62,9 @@ stopwords_from_file = []
 try:
     with open(filename) as f:
         stopwords_from_file = f.read().splitlines()
-        logger.info('Stop words loaded from file {}\n'.format(stopwords_from_file))
+        logger.debug('Stop words loaded from file {}\n'.format(stopwords_from_file))
 except Exception as e:
-    logger.info('stopwords.lst could not be loaded {}. Continuing with default'.format(e))
+    logger.warning('stopwords.lst could not be loaded {}. Continuing with default'.format(e))
 
 if stopwords_from_file is not None:
     stopwords = set(STOPWORDS)
