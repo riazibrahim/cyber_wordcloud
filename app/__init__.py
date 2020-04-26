@@ -11,13 +11,13 @@ from wordcloud import STOPWORDS
 parser = argparse.ArgumentParser(allow_abbrev=False, description="A tool to create word clouds from a bunch of URLs")
 url_or_list = parser.add_mutually_exclusive_group(required=True)
 url_or_list.add_argument('-u', '--url',
-                    dest='url',
-                    type=str,
-                    help='Give URL to obtain word cloud')
+                         dest='url',
+                         type=str,
+                         help='Give URL to obtain word cloud')
 url_or_list.add_argument('-f', '--file',
-                    dest='file',
-                    type=str,
-                    help='Give URLs in a file')
+                         dest='file',
+                         type=str,
+                         help='Give URLs in a file')
 
 parser.add_argument('-o', '--output',
                     dest='output',
@@ -55,14 +55,13 @@ logger.addHandler(console_handler)
 
 logger.debug('Cyber Cloud app has started')
 
-
-# Obtain stopwords
+# Obtain stopwords, this needs to be imported to other functions
 filename = 'stopwords.lst'
 stopwords_from_file = []
 try:
     with open(filename) as f:
         stopwords_from_file = f.read().splitlines()
-        logger.debug('Stop words loaded from file {}\n'.format(stopwords_from_file))
+        logger.debug('{} Stop words loaded from file {}\n'.format(len(stopwords_from_file), stopwords_from_file))
 except Exception as e:
     logger.warning('stopwords.lst could not be loaded {}. Continuing with default'.format(e))
 

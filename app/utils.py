@@ -11,7 +11,7 @@ def fetch_url(url):
     # logger.debug('Current thread {}'.format(current_thread().name))
     session = requests.Session()
     ip = session.get("http://icanhazip.com").text
-    logger.debug('Thread name: {} obtained tor ip {}\n'.format(current_thread().name, ip))
+    logger.debug('Thread name: {} using ip {}\n'.format(current_thread().name, ip))
     try:
         user_agent = random.choice(Config.USER_AGENT_LIST)
         headers = {'User-Agent': user_agent}

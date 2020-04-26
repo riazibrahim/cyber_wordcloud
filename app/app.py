@@ -13,7 +13,7 @@ from collections import Counter
 url_response_dict = {}
 url_list = create_url_list()
 threads_count = int(len(url_list) / 2) if int(
-        len(url_list) / 2) < Config.MAX_THREAD_COUNT else Config.MAX_THREAD_COUNT
+    len(url_list) / 2) < Config.MAX_THREAD_COUNT else Config.MAX_THREAD_COUNT
 chunk_size = int(len(url_list) / threads_count)
 
 results = ThreadPool(Config.THREADS_COUNT).imap(fetch_url, url_list, chunksize=chunk_size)
@@ -25,6 +25,7 @@ for url, html, error, ip in results:
         url_response_dict.update({id: html})
     else:
         logger.info("Error fetching %r: %s : ip used %s" % (url, error, ip))
+
 logger.debug('Number of dictionary items {}'.format(len(url_response_dict)))
 logger.debug('The urls are \n{}'.format(url_response_dict.keys()))
 
@@ -37,19 +38,20 @@ for key in url_response_dict:
     content_list = content.split()
     words = []
     for item in content_list:
-        sanitized_item = item.lower().strip('./,!;"\':)(“”&${}?')
-        if not re.match('[.0-9]+', sanitized_item):
+        sanitized_item = str(item).lower().strip('./,!;"\':)(“”&${}?')
+        if not re.match('^[.0-9%-]+$', sanitized_item):
             words.append(sanitized_item)
         else:
             logger.debug('Junk number detected "{} ", moving on ...'.format(sanitized_item))
+    logger.debug('Number of words sanitized is {}.. stopword needs to be applied'.format(len(words)))
     comment_words += " ".join(words)
 
 logger.info("Generating the word cloud...")
 
 word_cloud = WordCloud(width=800, height=800,
-                      background_color='white',
-                      stopwords=stopwords,
-                      min_font_size=10).generate(comment_words)
+                       background_color='white',
+                       stopwords=stopwords,
+                       min_font_size=10).generate(comment_words)
 
 plt.figure(figsize=(8, 8), facecolor=None)
 plt.imshow(word_cloud)
