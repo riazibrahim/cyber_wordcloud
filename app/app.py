@@ -7,6 +7,7 @@ from app.utils import *
 import sys
 import re
 from bs4 import BeautifulSoup
+from collections import Counter
 
 logger.debug("{} stop words used are: {}".format(len(stop_words), stop_words))
 url_response_dict = {}
@@ -35,9 +36,14 @@ for key in url_response_dict:
     val = BeautifulSoup(url_response_dict[key], "lxml").text
     tokens = val.split()
     for i in range(len(tokens)):
-        tokens[i] = tokens[i].lower()
+        tokens[i] = tokens[i].lower().strip('./,!;"\':)(“”&${}?')
     comment_words += " ".join(tokens)
 
+sorted_tokens = [item for items, c in Counter(tokens).most_common()
+                                      for item in [items] * c]
+logger.debug('Words to be made into word cloud {} - contains stopwords'.format(sorted_tokens))
+# unique_tokens = list(set(sorted_tokens)-stop_words)
+# logger.debug('Words to be made into word cloud {}'.format(list(set(unique_tokens))))
 logger.info("Generating the word cloud...")
 word_cloud = WordCloud(width=800, height=800,
                       background_color='white',
