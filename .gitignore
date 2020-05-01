@@ -138,7 +138,6 @@ logs/
 *.db
 *.bkp*
 *.lst.*
-outputs/
 backups/
 *.sh
 .vscode/
@@ -146,3 +145,4 @@ backups/
 *.csv
 *.ods
 *.ods*
+*.txt
