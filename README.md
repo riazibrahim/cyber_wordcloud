@@ -51,7 +51,7 @@ nano stopwords.lst
 ## Running the tool
 
 
-##### Usage 1: To obtain word cloud from a single single URLs:
+##### Usage 1: To obtain word cloud from a single URL:
 ```
 python cyber_cloud.py -u 'https://www.us-cert.gov/ncas/alerts/aa20-107a' -o cyberwordcloud
 ```
